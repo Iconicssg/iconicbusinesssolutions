@@ -1,12 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HeroSlider from "@/components/home/HeroSlider";
+import TrustBanner from "@/components/home/TrustBanner";
+import AboutBlurb from "@/components/home/AboutBlurb";
+import ServicesGrid from "@/components/home/ServicesGrid";
+import IndustriesGrid from "@/components/home/IndustriesGrid";
+import ValueProps from "@/components/home/ValueProps";
+import CandidateForm from "@/components/home/CandidateForm";
+import EmployerZoneCTA from "@/components/home/EmployerZoneCTA";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Navbar />
+      <main className="pt-20">
+        <HeroSlider />
+        <TrustBanner />
+        <AboutBlurb />
+        <ServicesGrid />
+        <IndustriesGrid />
+        <ValueProps />
+        <CandidateForm />
+        <EmployerZoneCTA />
+      </main>
+      <Footer />
     </div>
   );
 };
