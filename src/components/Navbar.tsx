@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import iconicLogo from "@/assets/iconic-logo.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,11 +41,16 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-lg flex items-center justify-center transition-bounce group-hover:scale-110">
-              <span className="text-primary-foreground font-bold text-xl">TB</span>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img 
+              src={iconicLogo} 
+              alt="Iconic Business Solutions" 
+              className="w-12 h-12 transition-bounce group-hover:scale-110"
+            />
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-primary leading-tight">Iconic</span>
+              <span className="text-xs text-muted-foreground leading-tight">Business Solutions</span>
             </div>
-            <span className="text-xl font-bold text-primary">TalentBridge</span>
           </Link>
 
           {/* Desktop Navigation */}

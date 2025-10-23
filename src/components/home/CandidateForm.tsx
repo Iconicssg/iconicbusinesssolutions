@@ -148,7 +148,7 @@ const CandidateForm = () => {
                   onCheckedChange={(checked) => setFormData({ ...formData, consent: checked as boolean })}
                 />
                 <Label htmlFor="consent" className="text-sm leading-relaxed cursor-pointer">
-                  I agree to the Privacy Policy and consent to TalentBridge contacting me regarding job opportunities.
+                  I agree to the Privacy Policy and consent to Iconic Business Solutions contacting me regarding job opportunities.
                 </Label>
               </div>
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, Facebook, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import iconicLogo from "@/assets/iconic-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,14 +11,19 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
-                <span className="text-secondary-foreground font-bold text-xl">TB</span>
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src={iconicLogo} 
+                alt="Iconic Business Solutions" 
+                className="w-12 h-12"
+              />
+              <div className="flex flex-col">
+                <span className="text-xl font-bold leading-tight">Iconic</span>
+                <span className="text-xs text-primary-foreground/80 leading-tight">Business Solutions</span>
               </div>
-              <span className="text-xl font-bold">TalentBridge</span>
             </div>
             <p className="text-primary-foreground/80 mb-4 text-sm">
-              Making Careers & Customer Experiences Better. Your trusted partner for recruitment, training, and CX solutions.
+              Where Great Teams Meet Great Service. Your trusted partner for recruitment, training, and CX solutions.
             </p>
             <div className="flex space-x-3">
               <a
@@ -111,21 +117,21 @@ const Footer = () => {
               <li className="flex items-start space-x-2 text-sm">
                 <MapPin size={18} className="flex-shrink-0 mt-0.5 text-secondary" />
                 <span className="text-primary-foreground/80">
-                  Mumbai Office<br />
-                  123 Business Park, Andheri East<br />
-                  Mumbai, Maharashtra 400069
+                  Vikas Nagar, Dehu Road<br />
+                  Pimpri-Chinchwad<br />
+                  Maharashtra 412101
                 </span>
               </li>
               <li className="flex items-center space-x-2 text-sm">
                 <Phone size={18} className="flex-shrink-0 text-secondary" />
-                <a href="tel:+911234567890" className="text-primary-foreground/80 hover:text-secondary transition-smooth">
-                  +91 12345 67890
+                <a href="tel:+919226449358" className="text-primary-foreground/80 hover:text-secondary transition-smooth">
+                  +91 92264 49358
                 </a>
               </li>
               <li className="flex items-center space-x-2 text-sm">
                 <Mail size={18} className="flex-shrink-0 text-secondary" />
-                <a href="mailto:info@talentbridge.com" className="text-primary-foreground/80 hover:text-secondary transition-smooth">
-                  info@talentbridge.com
+                <a href="mailto:iconicssg@gmail.com" className="text-primary-foreground/80 hover:text-secondary transition-smooth">
+                  iconicssg@gmail.com
                 </a>
               </li>
             </ul>
@@ -136,7 +142,7 @@ const Footer = () => {
         <div className="pt-8 border-t border-primary-foreground/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-primary-foreground/80 text-sm">
-              © {currentYear} TalentBridge. All rights reserved.
+              © {currentYear} Iconic Business Solutions. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link

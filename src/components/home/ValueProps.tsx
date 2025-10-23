@@ -33,7 +33,7 @@ const ValueProps = () => {
     <section className="py-20 bg-primary text-primary-foreground">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="mb-4 text-background">Why Choose TalentBridge</h2>
+          <h2 className="mb-4 text-background">Why Choose Iconic</h2>
           <p className="text-lg text-primary-foreground/90 max-w-2xl mx-auto">
             We deliver exceptional value through innovative solutions and unwavering commitment to excellence
           </p>

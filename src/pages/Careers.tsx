@@ -20,8 +20,8 @@ const Careers = () => {
         <section className="hero-gradient text-background py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="mb-6">Careers at TalentBridge</h1>
-              <p className="text-xl text-background/90">Join our team and help shape the future of recruitment and CX</p>
+              <h1 className="mb-6">Careers at Iconic Business Solutions</h1>
+              <p className="text-xl text-background/90">Join our growing team and help connect great talent with great opportunities</p>
             </div>
           </div>
         </section>

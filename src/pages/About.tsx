@@ -13,9 +13,9 @@ const About = () => {
         <section className="hero-gradient text-background py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="mb-6">About TalentBridge</h1>
+              <h1 className="mb-6">About Iconic Business Solutions</h1>
               <p className="text-xl text-background/90">
-                Connecting exceptional talent with leading organizations across India and beyond
+                Where Great Teams Meet Great Service
               </p>
             </div>
           </div>
@@ -28,19 +28,18 @@ const About = () => {
               <h2 className="mb-8 text-center text-primary">Our Story</h2>
               <div className="prose prose-lg mx-auto text-muted-foreground space-y-6">
                 <p>
-                  Founded over two decades ago, TalentBridge has grown from a small recruitment firm into a 
-                  comprehensive human capital and customer experience solutions provider. Our journey has been 
-                  driven by a singular mission: to create meaningful connections between talent and opportunity.
+                  Iconic Business Solutions is your trusted partner for comprehensive recruitment, training, 
+                  and customer experience management. Our mission is simple: connect businesses with skilled 
+                  professionals while delivering exceptional service that drives growth.
                 </p>
                 <p>
-                  Today, we serve over 50 enterprise clients across diverse industries, having successfully 
-                  placed more than 10,000 candidates in rewarding careers. Our expansion into training and 
-                  customer experience services reflects our commitment to addressing the evolving needs of 
-                  modern businesses.
+                  We specialize in bulk hiring, campus recruitment, call center solutions, and customized 
+                  training programs that make candidates job-ready. Our expertise spans multiple industries, 
+                  and we pride ourselves on understanding the unique needs of each client.
                 </p>
                 <p>
-                  With offices across major Indian cities and a growing global presence, we combine local 
-                  expertise with international best practices to deliver exceptional results.
+                  Based in Pimpri-Chinchwad, Maharashtra, we serve businesses across India with dedicated 
+                  support, innovative solutions, and a commitment to excellence in everything we do.
                 </p>
               </div>
             </div>
@@ -57,8 +56,8 @@ const About = () => {
                 </div>
                 <h3 className="text-2xl font-semibold mb-4 text-primary">Our Mission</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To empower businesses with the right talent and tools while creating meaningful career 
-                  opportunities that transform lives and drive sustainable growth.
+                  To connect great teams with great service by delivering exceptional recruitment, training, 
+                  and customer experience solutions that empower businesses and transform careers.
                 </p>
               </div>
               <div className="text-center">
@@ -67,8 +66,8 @@ const About = () => {
                 </div>
                 <h3 className="text-2xl font-semibold mb-4 text-primary">Our Vision</h3>
                 <p className="text-muted-foreground leading-relaxed">
-                  To be India's most trusted partner for integrated human capital and customer experience 
-                  solutions, recognized for innovation, integrity, and measurable impact.
+                  To be the preferred partner for businesses seeking reliable recruitment, training, and 
+                  customer experience solutions, known for our integrity, quality, and commitment to results.
                 </p>
               </div>
             </div>

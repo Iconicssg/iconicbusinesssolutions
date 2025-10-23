@@ -241,7 +241,7 @@ const CandidateRegistration = () => {
                       <Link to="/privacy-policy" className="text-secondary hover:underline">
                         Privacy Policy
                       </Link>{" "}
-                      and consent to TalentBridge storing my information and contacting me regarding 
+                      and consent to Iconic Business Solutions storing my information and contacting me regarding 
                       job opportunities that match my profile.
                     </Label>
                   </div>

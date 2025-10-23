@@ -73,33 +73,18 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-6">
-                  {/* Mumbai Office */}
+                  {/* Main Office */}
                   <Card className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
                         <MapPin className="text-secondary" size={24} />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2">Mumbai Office</h3>
+                        <h3 className="font-semibold text-lg mb-2">Main Office</h3>
                         <p className="text-muted-foreground">
-                          123 Business Park, Andheri East<br />
-                          Mumbai, Maharashtra 400069
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-
-                  {/* Delhi Office */}
-                  <Card className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <MapPin className="text-secondary" size={24} />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-lg mb-2">Delhi Office</h3>
-                        <p className="text-muted-foreground">
-                          456 Corporate Tower, Connaught Place<br />
-                          New Delhi, Delhi 110001
+                          Vikas Nagar, Dehu Road<br />
+                          Pimpri-Chinchwad<br />
+                          Maharashtra 412101
                         </p>
                       </div>
                     </div>
@@ -114,8 +99,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Phone</h3>
                         <p className="text-muted-foreground">
-                          <a href="tel:+911234567890" className="hover:text-secondary transition-smooth">
-                            +91 12345 67890
+                          <a href="tel:+919226449358" className="hover:text-secondary transition-smooth">
+                            +91 92264 49358
                           </a>
                         </p>
                       </div>
@@ -131,8 +116,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Email</h3>
                         <p className="text-muted-foreground">
-                          <a href="mailto:info@talentbridge.com" className="hover:text-secondary transition-smooth">
-                            info@talentbridge.com
+                          <a href="mailto:iconicssg@gmail.com" className="hover:text-secondary transition-smooth">
+                            iconicssg@gmail.com
                           </a>
                         </p>
                       </div>
