@@ -49,7 +49,7 @@ const Navbar = () => {
             />
             <div className="flex flex-col">
               <span className="text-xl font-bold text-primary leading-tight">Iconic</span>
-              <span className="text-xs text-muted-foreground leading-tight">Business Solutions</span>
+              <span className="text-sm font-semibold text-foreground leading-tight">Business Solutions</span>
             </div>
           </Link>
 
