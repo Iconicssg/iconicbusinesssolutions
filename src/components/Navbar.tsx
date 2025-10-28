@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import iconicLogo from "@/assets/iconic-logo.png";
 
@@ -73,6 +73,15 @@ const Navbar = () => {
 
           {/* CTA Buttons */}
           <div className="hidden lg:flex items-center space-x-3">
+            <a
+              href="https://wa.me/919226449358"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-lg flex items-center justify-center transition-smooth"
+              aria-label="Contact us on WhatsApp"
+            >
+              <MessageCircle size={20} />
+            </a>
             <Button asChild variant="outline" size="default">
               <Link to="/employer-zone">Employer Zone</Link>
             </Button>
@@ -111,6 +120,15 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-4 space-y-2">
+                <a
+                  href="https://wa.me/919226449358"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full h-10 bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-lg flex items-center justify-center space-x-2 transition-smooth"
+                >
+                  <MessageCircle size={20} />
+                  <span className="font-medium">WhatsApp</span>
+                </a>
                 <Button asChild variant="outline" className="w-full">
                   <Link to="/employer-zone" onClick={() => setIsMobileMenuOpen(false)}>
                     Employer Zone
