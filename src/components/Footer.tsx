@@ -27,7 +27,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-3">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/109435472/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-primary-foreground/10 hover:bg-secondary rounded-lg flex items-center justify-center transition-smooth"
