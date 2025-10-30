@@ -117,9 +117,8 @@ const Footer = () => {
               <li className="flex items-start space-x-2 text-sm">
                 <MapPin size={18} className="flex-shrink-0 mt-0.5 text-secondary" />
                 <span className="text-primary-foreground/80">
-                  Vikas Nagar, Dehu Road<br />
-                  Pimpri-Chinchwad<br />
-                  Maharashtra 412101
+                  Pimpri Chinchwad<br />
+                  Maharashtra - 411033
                 </span>
               </li>
               <li className="flex items-center space-x-2 text-sm">

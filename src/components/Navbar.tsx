@@ -49,8 +49,8 @@ const Navbar = () => {
               className="w-12 h-12 transition-bounce group-hover:scale-110"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-primary leading-tight">Iconic</span>
-              <span className="text-sm font-semibold text-foreground leading-tight">Business Solutions</span>
+              <span className="text-2xl font-bold text-primary leading-tight tracking-wide">Iconic</span>
+              <span className="text-xs font-medium text-muted-foreground leading-tight tracking-wider uppercase">Business Solutions</span>
             </div>
           </Link>
 

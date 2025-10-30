@@ -82,9 +82,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Main Office</h3>
                         <p className="text-muted-foreground">
-                          Vikas Nagar, Dehu Road<br />
-                          Pimpri-Chinchwad<br />
-                          Maharashtra 412101
+                          Pimpri Chinchwad<br />
+                          Maharashtra - 411033
                         </p>
                       </div>
                     </div>
