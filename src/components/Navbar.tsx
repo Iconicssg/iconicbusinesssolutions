@@ -38,13 +38,13 @@ const Navbar = () => {
   const isActive = (path: string) => location.pathname === path;
   return <nav className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-md shadow-medium" : "bg-transparent")}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group px-[10px] mx-[10px] my-[10px] py-[10px]">
-            <img src={iconicLogo} alt="Iconic Business Solutions" className="w-12 h-12 transition-bounce group-hover:scale-110" />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <img src={iconicLogo} alt="Iconic Business Solutions" className="w-20 h-20 transition-bounce group-hover:scale-110" />
             <div className="flex flex-col">
-              
-              
+              <span className="text-2xl font-bold text-primary leading-tight">Iconic</span>
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider leading-tight">Business Solutions</span>
             </div>
           </Link>
 
