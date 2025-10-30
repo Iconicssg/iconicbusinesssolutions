@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSlider from "@/components/home/HeroSlider";
 import TrustBanner from "@/components/home/TrustBanner";
+import StatsSection from "@/components/home/StatsSection";
 import AboutBlurb from "@/components/home/AboutBlurb";
 import ServicesGrid from "@/components/home/ServicesGrid";
 import IndustriesGrid from "@/components/home/IndustriesGrid";
@@ -16,6 +17,7 @@ const Index = () => {
       <main className="pt-20">
         <HeroSlider />
         <TrustBanner />
+        <StatsSection />
         <AboutBlurb />
         <ServicesGrid />
         <IndustriesGrid />
