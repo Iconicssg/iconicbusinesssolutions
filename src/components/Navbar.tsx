@@ -40,25 +40,22 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto px-4">
-        {/* Top Bar - Logo and Company Name */}
-        <div className="flex items-center justify-center py-3 border-b border-border/50">
+        <div className="flex items-center justify-between h-20">
+          {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <img 
               src={iconicLogo} 
               alt="Iconic Business Solutions" 
-              className="w-10 h-10 transition-bounce group-hover:scale-110"
+              className="w-12 h-12 transition-bounce group-hover:scale-110"
             />
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-primary leading-tight tracking-wide">Iconic</span>
+              <span className="text-2xl font-bold text-primary leading-tight tracking-wide">Iconic</span>
               <span className="text-xs font-medium text-muted-foreground leading-tight tracking-wider uppercase">Business Solutions</span>
             </div>
           </Link>
-        </div>
 
-        {/* Bottom Bar - Navigation and CTAs */}
-        <div className="flex items-center justify-between h-16">
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1 flex-1 justify-center">
+          <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -96,7 +93,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground ml-auto"
+            className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
