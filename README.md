@@ -1,73 +1,91 @@
-# Welcome to your Lovable project
+# Talent Flow CX
 
-## Project info
+<p align="center">
+  <strong>A modern solution for streamlining the recruitment and hiring process.</strong>
+  <br />
+  <br />
+  <a href="https://talent-flow-cx.lovable.app/"><strong>View Live Demo »</strong></a>
+  <br />
+  <br />
+  <a href="https://github.com/Iconicssg/iconicbusinesssolutions/issues">Report Bug</a>
+  ·
+  <a href="https://github.com/Iconicssg/iconicbusinesssolutions/issues">Request Feature</a>
+</p>
 
-**URL**: https://lovable.dev/projects/fdec5c2c-5536-4917-a73b-e40e5aa2f790
+---
 
-## How can I edit this code?
+## About The Project
 
-There are several ways of editing your application.
+Talent Flow CX is a web application designed to modernize the talent acquisition pipeline. It provides recruiters and hiring managers with a centralized platform to track applicants, manage interview stages, and collaborate on hiring decisions, ensuring a smooth and efficient process for both the company and the candidates.
 
-**Use Lovable**
+This project was built to solve the challenges of manual tracking and disjointed communication that often slow down the hiring cycle.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fdec5c2c-5536-4917-a73b-e40e5aa2f790) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## Key Features
 
-**Use your preferred IDE**
+* **Applicant Tracking:** Manage all candidates from a single, intuitive dashboard.
+* **Customizable Pipeline:** Adapt the hiring stages to fit your company's unique workflow.
+* **Interview Scheduling:** Streamline the process of setting up interviews with potential hires.
+* **Collaborative Feedback:** Allow team members to share notes and ratings on candidates to make informed decisions.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Built With
 
-Follow these steps:
+This project leverages a modern and powerful tech stack to deliver a fast and reliable user experience.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+* **Vite:** Next-generation frontend tooling.
+* **React:** A JavaScript library for building user interfaces.
+* **TypeScript:** A typed superset of JavaScript that compiles to plain JavaScript.
+* **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
+* **Shadcn/ui:** Re-usable components built using Radix UI and Tailwind CSS.
+* **Supabase:** The open-source Firebase alternative for the backend.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Getting Started (for Developers)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+If you want to run a local copy of this project, follow these steps.
 
-**Edit a file directly in GitHub**
+### Prerequisites
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+You must have Node.js and npm (or bun) installed on your machine.
+* You can install them using [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm#installing-and-updating).
 
-**Use GitHub Codespaces**
+### Installation
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1.  **Clone the repository:**
+    ```sh
+    git clone [https://github.com/Iconicssg/iconicbusinesssolutions.git](https://github.com/Iconicssg/iconicbusinesssolutions.git)
+    ```
+2.  **Navigate into the project directory:**
+    ```sh
+    cd iconicbusinesssolutions
+    ```
+3.  **Install the dependencies:**
+    ```sh
+    npm install
+    ```
+4.  **Set up your environment variables.** Create a `.env.local` file in the root of the project and add your Supabase project keys. You can find these in your Supabase project dashboard.
+    ```
+    VITE_SUPABASE_URL=YOUR_SUPABASE_URL
+    VITE_SUPABASE_ANON_KEY=YOUR_SUPABASE_ANON_KEY
+    ```
+5.  **Start the development server:**
+    ```sh
+    npm run dev
+    ```
+    The application will be available at `http://localhost:5173`.
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Distributed under the MIT License. See the `LICENSE` file for more information.
 
-## How can I deploy this project?
+---
 
-Simply open [Lovable](https://lovable.dev/projects/fdec5c2c-5536-4917-a73b-e40e5aa2f790) and click on Share -> Publish.
+## Contact
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Project Link: [https://github.com/Iconicssg/iconicbusinesssolutions](https://github.com/Iconicssg/iconicbusinesssolutions)
