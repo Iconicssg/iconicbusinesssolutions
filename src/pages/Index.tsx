@@ -9,15 +9,13 @@ import IndustriesGrid from "@/components/home/IndustriesGrid";
 import ValueProps from "@/components/home/ValueProps";
 import CandidateForm from "@/components/home/CandidateForm";
 import EmployerZoneCTA from "@/components/home/EmployerZoneCTA";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navbar />
       <main className="pt-20">
         <HeroSlider />
         <TrustBanner />
-        <StatsSection />
+        
         <AboutBlurb />
         <ServicesGrid />
         <IndustriesGrid />
@@ -26,8 +24,6 @@ const Index = () => {
         <EmployerZoneCTA />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
