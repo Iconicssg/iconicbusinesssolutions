@@ -3,17 +3,17 @@ import { Award, Users, Building2 } from "lucide-react";
 const stats = [
   {
     icon: Award,
-    value: "20+ Years",
+    value: "4+ Years",
     label: "Experience",
   },
   {
     icon: Users,
-    value: "10,000+",
+    value: "2000+",
     label: "Candidates Placed",
   },
   {
     icon: Building2,
-    value: "50+",
+    value: "10+",
     label: "Enterprise Clients",
   },
 ];
