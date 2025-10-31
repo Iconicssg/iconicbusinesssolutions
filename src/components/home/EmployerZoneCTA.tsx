@@ -8,6 +8,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { Loader2, ArrowRight } from "lucide-react";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 
 const employerCallbackSchema = z.object({
   companyName: z.string().trim().min(1, "Company name is required").max(200, "Company name must be less than 200 characters"),
@@ -48,24 +49,42 @@ const EmployerZoneCTA = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Request Received!",
-      description: "Our team will contact you within 24 hours.",
-    });
-    
-    setFormData({
-      companyName: "",
-      contactPerson: "",
-      email: "",
-      phone: "",
-      requirement: "",
-      contactTime: "",
-    });
-    
-    setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('employer_inquiries')
+        .insert([{
+          company_name: formData.companyName,
+          contact_person: formData.contactPerson,
+          email: formData.email,
+          phone: formData.phone,
+          requirement: formData.requirement,
+          contact_time: formData.contactTime || null,
+        }]);
+
+      if (error) throw error;
+      
+      toast({
+        title: "Request Received!",
+        description: "Our team will contact you within 24 hours.",
+      });
+      
+      setFormData({
+        companyName: "",
+        contactPerson: "",
+        email: "",
+        phone: "",
+        requirement: "",
+        contactTime: "",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

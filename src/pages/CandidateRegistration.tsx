@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { Loader2, Upload, CheckCircle } from "lucide-react";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 
 const candidateRegistrationSchema = z.object({
   fullName: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -82,26 +83,48 @@ const CandidateRegistration = () => {
     }
 
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     
-    toast({
-      title: "Registration Successful!",
-      description: "Thank you for registering. We'll review your profile and be in touch soon.",
-    });
-    
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      location: "",
-      experience: "",
-      skills: "",
-      resume: null,
-      consent: false,
-    });
-    setFileName("");
-    
-    setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('candidate_applications')
+        .insert([{
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          experience: parseInt(formData.experience),
+          skills: formData.skills,
+          resume_url: formData.resume ? formData.resume.name : null,
+          consent: formData.consent,
+        }]);
+
+      if (error) throw error;
+      
+      toast({
+        title: "Registration Successful!",
+        description: "Thank you for registering. We'll review your profile and be in touch soon.",
+      });
+      
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        location: "",
+        experience: "",
+        skills: "",
+        resume: null,
+        consent: false,
+      });
+      setFileName("");
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Registration Failed",
+        description: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

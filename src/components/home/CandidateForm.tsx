@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { z } from "zod";
+import { supabase } from "@/integrations/supabase/client";
 
 const candidateSchema = z.object({
   fullName: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
@@ -52,25 +53,44 @@ const CandidateForm = () => {
 
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Registration Successful!",
-      description: "Thank you for registering. We'll be in touch soon.",
-    });
-    
-    setFormData({
-      fullName: "",
-      email: "",
-      phone: "",
-      location: "",
-      experience: "",
-      skills: "",
-      consent: false,
-    });
-    
-    setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('candidate_applications')
+        .insert([{
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          location: formData.location,
+          experience: parseInt(formData.experience),
+          skills: formData.skills,
+          consent: formData.consent,
+        }]);
+
+      if (error) throw error;
+      
+      toast({
+        title: "Registration Successful!",
+        description: "Thank you for registering. We'll be in touch soon.",
+      });
+      
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        location: "",
+        experience: "",
+        skills: "",
+        consent: false,
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Submission Failed",
+        description: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -14,7 +14,108 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      candidate_applications: {
+        Row: {
+          consent: boolean
+          created_at: string
+          email: string
+          experience: number
+          full_name: string
+          id: string
+          location: string
+          phone: string
+          resume_url: string | null
+          skills: string
+        }
+        Insert: {
+          consent?: boolean
+          created_at?: string
+          email: string
+          experience: number
+          full_name: string
+          id?: string
+          location: string
+          phone: string
+          resume_url?: string | null
+          skills: string
+        }
+        Update: {
+          consent?: boolean
+          created_at?: string
+          email?: string
+          experience?: number
+          full_name?: string
+          id?: string
+          location?: string
+          phone?: string
+          resume_url?: string | null
+          skills?: string
+        }
+        Relationships: []
+      }
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          name: string
+          phone: string | null
+          subject: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          name: string
+          phone?: string | null
+          subject: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+          phone?: string | null
+          subject?: string
+        }
+        Relationships: []
+      }
+      employer_inquiries: {
+        Row: {
+          company_name: string
+          contact_person: string
+          contact_time: string | null
+          created_at: string
+          email: string
+          id: string
+          phone: string
+          requirement: string
+        }
+        Insert: {
+          company_name: string
+          contact_person: string
+          contact_time?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          phone: string
+          requirement: string
+        }
+        Update: {
+          company_name?: string
+          contact_person?: string
+          contact_time?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          phone?: string
+          requirement?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
