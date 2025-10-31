@@ -7,6 +7,16 @@ import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { Loader2, ArrowRight } from "lucide-react";
+import { z } from "zod";
+
+const employerCallbackSchema = z.object({
+  companyName: z.string().trim().min(1, "Company name is required").max(200, "Company name must be less than 200 characters"),
+  contactPerson: z.string().trim().min(1, "Contact person is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format"),
+  requirement: z.string().trim().min(10, "Please provide more details about your requirement").max(1000, "Requirement must be less than 1000 characters"),
+  contactTime: z.string().max(100, "Contact time must be less than 100 characters").optional(),
+});
 
 const EmployerZoneCTA = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +32,20 @@ const EmployerZoneCTA = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    try {
+      employerCallbackSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // Simulate form submission
@@ -89,6 +113,7 @@ const EmployerZoneCTA = () => {
                   <Input
                     id="companyName"
                     required
+                    maxLength={200}
                     value={formData.companyName}
                     onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                     placeholder="Your Company Pvt Ltd"
@@ -100,6 +125,7 @@ const EmployerZoneCTA = () => {
                   <Input
                     id="contactPerson"
                     required
+                    maxLength={100}
                     value={formData.contactPerson}
                     onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
                     placeholder="John Doe"
@@ -113,6 +139,7 @@ const EmployerZoneCTA = () => {
                       id="email"
                       type="email"
                       required
+                      maxLength={255}
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="john@company.com"
@@ -124,6 +151,7 @@ const EmployerZoneCTA = () => {
                       id="phone"
                       type="tel"
                       required
+                      maxLength={16}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       placeholder="+91 12345 67890"
@@ -136,6 +164,7 @@ const EmployerZoneCTA = () => {
                   <Textarea
                     id="requirement"
                     required
+                    maxLength={1000}
                     value={formData.requirement}
                     onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
                     placeholder="Describe your hiring needs..."
@@ -147,6 +176,7 @@ const EmployerZoneCTA = () => {
                   <Label htmlFor="contactTime">Preferred Contact Time</Label>
                   <Input
                     id="contactTime"
+                    maxLength={100}
                     value={formData.contactTime}
                     onChange={(e) => setFormData({ ...formData, contactTime: e.target.value })}
                     placeholder="e.g., Weekdays 10 AM - 5 PM"

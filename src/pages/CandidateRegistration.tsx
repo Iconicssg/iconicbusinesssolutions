@@ -9,6 +9,21 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
 import { Loader2, Upload, CheckCircle } from "lucide-react";
+import { z } from "zod";
+
+const candidateRegistrationSchema = z.object({
+  fullName: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format"),
+  location: z.string().trim().min(1, "Location is required").max(100, "Location must be less than 100 characters"),
+  experience: z.string().refine((val) => {
+    const num = parseInt(val);
+    return !isNaN(num) && num >= 0 && num <= 50;
+  }, "Experience must be between 0 and 50 years"),
+  skills: z.string().trim().min(1, "Skills are required").max(500, "Skills must be less than 500 characters"),
+  resume: z.instanceof(File).refine((file) => file !== null, "Resume is required"),
+  consent: z.boolean().refine((val) => val === true, "You must agree to the Privacy Policy"),
+});
 
 const CandidateRegistration = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,6 +43,15 @@ const CandidateRegistration = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        toast({
+          title: "Invalid File Type",
+          description: "Please upload a PDF, DOC, or DOCX file.",
+          variant: "destructive",
+        });
+        return;
+      }
       if (file.size > 10 * 1024 * 1024) {
         toast({
           title: "File Too Large",
@@ -44,21 +68,16 @@ const CandidateRegistration = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.consent) {
-      toast({
-        title: "Consent Required",
-        description: "Please agree to the Privacy Policy to continue.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (!formData.resume) {
-      toast({
-        title: "Resume Required",
-        description: "Please upload your resume to continue.",
-        variant: "destructive",
-      });
+    try {
+      candidateRegistrationSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
       return;
     }
 
@@ -131,6 +150,7 @@ const CandidateRegistration = () => {
                       <Input
                         id="fullName"
                         required
+                        maxLength={100}
                         value={formData.fullName}
                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                         placeholder="John Doe"
@@ -142,6 +162,7 @@ const CandidateRegistration = () => {
                         id="email"
                         type="email"
                         required
+                        maxLength={255}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@example.com"
@@ -156,6 +177,7 @@ const CandidateRegistration = () => {
                         id="phone"
                         type="tel"
                         required
+                        maxLength={16}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 12345 67890"
@@ -166,6 +188,7 @@ const CandidateRegistration = () => {
                       <Input
                         id="location"
                         required
+                        maxLength={100}
                         value={formData.location}
                         onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                         placeholder="Mumbai, Delhi, Bangalore..."
@@ -192,6 +215,7 @@ const CandidateRegistration = () => {
                       <Input
                         id="skills"
                         required
+                        maxLength={500}
                         value={formData.skills}
                         onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
                         placeholder="Communication, Sales, Management..."

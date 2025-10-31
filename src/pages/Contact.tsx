@@ -8,6 +8,15 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Mail, Clock, Loader2 } from "lucide-react";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format"),
+  subject: z.string().trim().min(1, "Subject is required").max(200, "Subject must be less than 200 characters"),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000, "Message must be less than 2000 characters"),
+});
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +31,20 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    try {
+      contactSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+    
     setIsSubmitting(true);
     
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -151,6 +174,7 @@ const Contact = () => {
                       <Input
                         id="name"
                         required
+                        maxLength={100}
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="John Doe"
@@ -163,6 +187,7 @@ const Contact = () => {
                         id="email"
                         type="email"
                         required
+                        maxLength={255}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@example.com"
@@ -175,6 +200,7 @@ const Contact = () => {
                         id="phone"
                         type="tel"
                         required
+                        maxLength={16}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 12345 67890"
@@ -186,6 +212,7 @@ const Contact = () => {
                       <Input
                         id="subject"
                         required
+                        maxLength={200}
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         placeholder="How can we help?"
@@ -197,6 +224,7 @@ const Contact = () => {
                       <Textarea
                         id="message"
                         required
+                        maxLength={2000}
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         placeholder="Tell us more about your needs..."

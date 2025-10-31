@@ -6,6 +6,20 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
+import { z } from "zod";
+
+const candidateSchema = z.object({
+  fullName: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format"),
+  location: z.string().trim().min(1, "Location is required").max(100, "Location must be less than 100 characters"),
+  experience: z.string().refine((val) => {
+    const num = parseInt(val);
+    return !isNaN(num) && num >= 0 && num <= 50;
+  }, "Experience must be between 0 and 50 years"),
+  skills: z.string().trim().min(1, "Skills are required").max(500, "Skills must be less than 500 characters"),
+  consent: z.boolean().refine((val) => val === true, "You must agree to the Privacy Policy"),
+});
 
 const CandidateForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,12 +37,16 @@ const CandidateForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.consent) {
-      toast({
-        title: "Consent Required",
-        description: "Please agree to the Privacy Policy to continue.",
-        variant: "destructive",
-      });
+    try {
+      candidateSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
       return;
     }
 
@@ -74,6 +92,7 @@ const CandidateForm = () => {
                   <Input
                     id="fullName"
                     required
+                    maxLength={100}
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                     placeholder="John Doe"
@@ -85,6 +104,7 @@ const CandidateForm = () => {
                     id="email"
                     type="email"
                     required
+                    maxLength={255}
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="john@example.com"
@@ -99,6 +119,7 @@ const CandidateForm = () => {
                     id="phone"
                     type="tel"
                     required
+                    maxLength={16}
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 12345 67890"
@@ -109,6 +130,7 @@ const CandidateForm = () => {
                   <Input
                     id="location"
                     required
+                    maxLength={100}
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                     placeholder="Mumbai, Delhi, Bangalore..."
@@ -124,6 +146,7 @@ const CandidateForm = () => {
                     type="number"
                     required
                     min="0"
+                    max="50"
                     value={formData.experience}
                     onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                     placeholder="2"
@@ -134,6 +157,7 @@ const CandidateForm = () => {
                   <Input
                     id="skills"
                     required
+                    maxLength={500}
                     value={formData.skills}
                     onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
                     placeholder="Communication, Sales, Management..."

@@ -8,6 +8,16 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, Users, TrendingUp, Clock, Shield, BarChart, Headphones } from "lucide-react";
+import { z } from "zod";
+
+const employerConsultationSchema = z.object({
+  companyName: z.string().trim().min(1, "Company name is required").max(200, "Company name must be less than 200 characters"),
+  contactPerson: z.string().trim().min(1, "Contact person is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  phone: z.string().trim().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format"),
+  requirement: z.string().trim().min(10, "Please provide more details about your requirement").max(2000, "Requirement must be less than 2000 characters"),
+  contactTime: z.string().max(100, "Contact time must be less than 100 characters").optional(),
+});
 
 const EmployerZone = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,6 +33,20 @@ const EmployerZone = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    try {
+      employerConsultationSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Validation Error",
+          description: error.errors[0].message,
+          variant: "destructive",
+        });
+      }
+      return;
+    }
+    
     setIsSubmitting(true);
     
     await new Promise(resolve => setTimeout(resolve, 1500));
@@ -199,6 +223,7 @@ const EmployerZone = () => {
                       <Input
                         id="companyName"
                         required
+                        maxLength={200}
                         value={formData.companyName}
                         onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                         placeholder="Your Company Pvt Ltd"
@@ -209,6 +234,7 @@ const EmployerZone = () => {
                       <Input
                         id="contactPerson"
                         required
+                        maxLength={100}
                         value={formData.contactPerson}
                         onChange={(e) => setFormData({ ...formData, contactPerson: e.target.value })}
                         placeholder="John Doe"
@@ -223,6 +249,7 @@ const EmployerZone = () => {
                         id="email"
                         type="email"
                         required
+                        maxLength={255}
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@company.com"
@@ -234,6 +261,7 @@ const EmployerZone = () => {
                         id="phone"
                         type="tel"
                         required
+                        maxLength={16}
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+91 12345 67890"
@@ -246,6 +274,7 @@ const EmployerZone = () => {
                     <Textarea
                       id="requirement"
                       required
+                      maxLength={2000}
                       value={formData.requirement}
                       onChange={(e) => setFormData({ ...formData, requirement: e.target.value })}
                       placeholder="Please describe your hiring needs: number of positions, roles, locations, timeline..."
@@ -257,6 +286,7 @@ const EmployerZone = () => {
                     <Label htmlFor="contactTime">Preferred Contact Time</Label>
                     <Input
                       id="contactTime"
+                      maxLength={100}
                       value={formData.contactTime}
                       onChange={(e) => setFormData({ ...formData, contactTime: e.target.value })}
                       placeholder="e.g., Weekdays 10 AM - 5 PM"
