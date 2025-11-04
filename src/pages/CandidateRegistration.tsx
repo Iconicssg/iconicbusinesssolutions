@@ -17,10 +17,14 @@ const candidateRegistrationSchema = z.object({
   email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
   phone: z.string().trim().regex(/^\+?[1-9]\d{1,14}$/, "Invalid phone number format"),
   location: z.string().trim().min(1, "Location is required").max(100, "Location must be less than 100 characters"),
-  experience: z.string().refine((val) => {
+  experienceYears: z.string().refine((val) => {
     const num = parseInt(val);
     return !isNaN(num) && num >= 0 && num <= 50;
-  }, "Experience must be between 0 and 50 years"),
+  }, "Years must be between 0 and 50"),
+  experienceMonths: z.string().refine((val) => {
+    const num = parseInt(val);
+    return !isNaN(num) && num >= 0 && num <= 11;
+  }, "Months must be between 0 and 11"),
   skills: z.string().trim().min(1, "Skills are required").max(500, "Skills must be less than 500 characters"),
   resume: z.instanceof(File).refine((file) => file !== null, "Resume is required"),
   consent: z.boolean().refine((val) => val === true, "You must agree to the Privacy Policy"),
@@ -35,7 +39,8 @@ const CandidateRegistration = () => {
     email: "",
     phone: "",
     location: "",
-    experience: "",
+    experienceYears: "",
+    experienceMonths: "",
     skills: "",
     resume: null as File | null,
     consent: false,
@@ -85,6 +90,8 @@ const CandidateRegistration = () => {
     setIsSubmitting(true);
     
     try {
+      const totalMonths = parseInt(formData.experienceYears) * 12 + parseInt(formData.experienceMonths);
+      
       const { error } = await supabase
         .from('candidate_applications')
         .insert([{
@@ -92,7 +99,7 @@ const CandidateRegistration = () => {
           email: formData.email,
           phone: formData.phone,
           location: formData.location,
-          experience: parseInt(formData.experience),
+          experience: totalMonths,
           skills: formData.skills,
           resume_url: formData.resume ? formData.resume.name : null,
           consent: formData.consent,
@@ -110,7 +117,8 @@ const CandidateRegistration = () => {
         email: "",
         phone: "",
         location: "",
-        experience: "",
+        experienceYears: "",
+        experienceMonths: "",
         skills: "",
         resume: null,
         consent: false,
@@ -219,31 +227,48 @@ const CandidateRegistration = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="experience">Total Experience (years) *</Label>
-                      <Input
-                        id="experience"
-                        type="number"
-                        required
-                        min="0"
-                        max="50"
-                        value={formData.experience}
-                        onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
-                        placeholder="2"
-                      />
+                  <div className="space-y-2">
+                    <Label>Total Experience *</Label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="experienceYears" className="text-sm text-muted-foreground">Years</Label>
+                        <Input
+                          id="experienceYears"
+                          type="number"
+                          required
+                          min="0"
+                          max="50"
+                          value={formData.experienceYears}
+                          onChange={(e) => setFormData({ ...formData, experienceYears: e.target.value })}
+                          placeholder="0"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="experienceMonths" className="text-sm text-muted-foreground">Months</Label>
+                        <Input
+                          id="experienceMonths"
+                          type="number"
+                          required
+                          min="0"
+                          max="11"
+                          value={formData.experienceMonths}
+                          onChange={(e) => setFormData({ ...formData, experienceMonths: e.target.value })}
+                          placeholder="0"
+                        />
+                      </div>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="skills">Key Skills *</Label>
-                      <Input
-                        id="skills"
-                        required
-                        maxLength={500}
-                        value={formData.skills}
-                        onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
-                        placeholder="Communication, Sales, Management..."
-                      />
-                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="skills">Key Skills *</Label>
+                    <Input
+                      id="skills"
+                      required
+                      maxLength={500}
+                      value={formData.skills}
+                      onChange={(e) => setFormData({ ...formData, skills: e.target.value })}
+                      placeholder="Communication, Sales, Management..."
+                    />
                   </div>
 
                   <div className="space-y-2">
