@@ -72,7 +72,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && <div className="lg:hidden py-4 border-t border-border animate-fade-in">
+        {isMobileMenuOpen && <div className="lg:hidden py-4 border-t border-border bg-background animate-fade-in">
             <div className="flex flex-col space-y-2">
               {navLinks.map(link => <Link key={link.path} to={link.path} className={cn("px-4 py-3 rounded-lg transition-smooth font-medium", isActive(link.path) ? "text-secondary bg-secondary/10" : "text-foreground hover:bg-muted")} onClick={() => setIsMobileMenuOpen(false)}>
                   {link.name}
