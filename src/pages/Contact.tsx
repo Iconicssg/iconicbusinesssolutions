@@ -124,8 +124,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Main Office</h3>
                         <p className="text-muted-foreground">
-                          Pimpri Chinchwad<br />
-                          Maharashtra - 411033
+                          Office No.3 Near Gurukrupa Khaugalli PCMC<br />
+                          Maharashtra - 411057
                         </p>
                       </div>
                     </div>
