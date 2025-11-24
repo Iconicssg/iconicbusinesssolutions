@@ -42,9 +42,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <img src={iconicLogo} alt="Iconic Business Solutions" className="w-16 h-16 object-contain transition-smooth group-hover:scale-105" />
-            <span className="text-xl font-bold text-foreground hidden sm:block">
-              Iconic Business Solution
-            </span>
+            
           </Link>
 
 
