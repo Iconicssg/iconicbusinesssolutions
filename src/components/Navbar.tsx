@@ -40,8 +40,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center group">
-            <img src={iconicLogo} alt="Iconic Business Solutions" className="w-20 h-20 object-contain transition-smooth group-hover:scale-105" />
+          <Link to="/" className="flex items-center gap-3 group">
+            <img src={iconicLogo} alt="Iconic Business Solutions" className="w-16 h-16 object-contain transition-smooth group-hover:scale-105" />
+            <span className="text-xl font-bold text-foreground hidden sm:block">
+              Iconic Business Solution
+            </span>
           </Link>
 
 
